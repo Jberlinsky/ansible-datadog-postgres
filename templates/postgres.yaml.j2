@@ -1,0 +1,18 @@
+init_config:
+
+instances:
+{% for database in postgresql_databases %}
+  - host: localhost
+    port: 5432
+    username: {{ datadog_postgresql_user }}
+    password: {{ datadog_postgresql_password }}
+    dbname: {{ database.name }}
+    {% if database.name in datadog_postgresql_monitor_tables %}
+relations:
+      {% for table in datadog_postgresql_monitor_tables[database.name] %}
+- {{ table }}
+      {% endfor %}
+    {% endif %}
+
+{% endfor %}
+

@@ -1,0 +1,9 @@
+---
+- name: Upload datadog postgres config file
+  template: >
+    src=postgres.yaml.j2
+    dest=/etc/dd-agent/conf.d/postgres.yaml
+    owner=dd-agent
+    group=root
+    mode=0644
+  notify: Restart datadog

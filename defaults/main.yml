@@ -1,0 +1,4 @@
+---
+postgresql_databases:
+datadog_postgresql_user:
+datadog_postgresql_password:
